@@ -1,0 +1,7 @@
+{{ poll }} - {{ poll.pub_date }}
+
+<ul>
+{% for choice in poll.choice_set.all %}
+    <li>{{ choice.choice_text }}</li>
+{% endfor %}
+</ul>
