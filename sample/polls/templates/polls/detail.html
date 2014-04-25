@@ -1,3 +1,9 @@
+{% extends "sample/base.html" %}
+
+{% block title %}Poll: {{ poll }}{% endblock %}
+
+
+{% block content %}
 <h1>{{ poll }} - {{ poll.pub_date }}</h1>
 
 <ul>
@@ -21,3 +27,4 @@
   </form>
 </div>
 
+{% endblock %}

@@ -12,6 +12,13 @@ from polls.models import Choice
 from polls.models import Poll
 
 
+class HomeView(generic.ListView):
+    template_name = 'sample/home.html'
+    context_object_name = 'latest_poll_list'
+
+    def get_queryset(self):
+        """Return the last five published polls."""
+        return Poll.objects.order_by('-pub_date')[:5]
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
@@ -20,23 +27,6 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         """Return the last five published polls."""
         return Poll.objects.order_by('-pub_date')[:5]
-
-
-# def index(request):
-#     latest_poll_list = Poll.objects.order_by('-pub_date')[:5]
-#     template = loader.get_template('polls/index.html')
-#     context = RequestContext(request, {
-#         'latest_poll_list': latest_poll_list,
-#     })
-#     return HttpResponse(template.render(context))
-
-# def detail(request, poll_id):
-#     poll = get_object_or_404(Poll, pk=poll_id)
-#     return render(request, 'polls/detail.html', {'poll': poll})
-
-# def results(request, poll_id):
-#     poll = get_object_or_404(Poll, pk=poll_id)
-#     return render(request, 'polls/results.html', {'poll': poll})
 
 class DetailView(generic.DetailView):
     model = Poll

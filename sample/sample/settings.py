@@ -92,7 +92,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
+TEMPLATE_DIRS = (
+  os.path.join(PROJECT_DIR, 'templates'),
+)
 
 import sys
 #Covers regular testing and django-coverage
