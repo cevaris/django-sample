@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<h1>{{ poll }} - {{ poll.pub_date }}</h1>
+<h1>{{ poll }}<br/><small>{{ poll.pub_date }}</small></h1>
 
 <ul class="list-group">
 {% for choice in poll.choice_set.all %}
@@ -16,13 +16,16 @@
 <div>
   {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
+
   <form action="{% url 'polls:vote' poll.id %}" method="post">
   {% csrf_token %}
-  {% for choice in poll.choice_set.all %}
-      <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
-      <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
-  {% endfor %}
-  <input type="submit" value="Vote" />
+    <div class="form-group">
+      {% for choice in poll.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+      {% endfor %}
+    </div>
+    <button type="submit" class="btn btn-primary">Vote</button>
   </form>
 </div>
 

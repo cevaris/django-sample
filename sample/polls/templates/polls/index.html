@@ -10,7 +10,10 @@
 {% if latest_poll_list %}
     <ul class="list-group">
     {% for poll in latest_poll_list %}
-        <li class="list-group-item"><a href="{% url 'polls:detail' poll.id %}">{{ poll.question }}</a></li>
+        <li class="list-group-item">
+          <a href="{% url 'polls:detail' poll.id %}">{{ poll.question }}</a>
+          <span class="pull-right">{{ poll.pub_date }}</span>
+        </li>
     {% endfor %}
     </ul>
 {% else %}

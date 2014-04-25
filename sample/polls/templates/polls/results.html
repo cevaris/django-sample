@@ -4,7 +4,7 @@
 
 
 {% block content %}
-<h1>{{ poll }} - {{ poll.pub_date }}</h1>
+<h1>{{ poll }}<br/><small>{{ poll.pub_date }}</small></h1>
 
 <ul class="list-group">
 {% for choice in poll.choice_set.all %}
@@ -12,7 +12,7 @@
 {% endfor %}
 </ul>
 
-<a href="{% url 'polls:detail' poll.id %}">Vote again?</a>
+<a href="{% url 'polls:detail' poll.id %}" class="btn btn-primary">Vote again?</a>
 
 
 {% endblock %}
