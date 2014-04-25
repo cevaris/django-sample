@@ -96,6 +96,10 @@ TEMPLATE_DIRS = (
   os.path.join(PROJECT_DIR, 'templates'),
 )
 
+FIXTURE_DIRS = (
+   os.path.join(PROJECT_DIR, 'fixtures'),
+)
+
 import sys
 #Covers regular testing and django-coverage
 if 'test' in sys.argv or 'test_coverage' in sys.argv: 

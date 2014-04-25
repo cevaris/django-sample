@@ -6,7 +6,7 @@ admin.autodiscover()
 from polls import views
 
 urlpatterns = patterns('',
-    # Examples:
+  
     url(r'^$', views.HomeView.as_view(), name='home'),
 
     url(r'^admin/', include(admin.site.urls)),
