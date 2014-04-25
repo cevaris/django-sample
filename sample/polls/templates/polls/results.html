@@ -6,9 +6,9 @@
 {% block content %}
 <h1>{{ poll }} - {{ poll.pub_date }}</h1>
 
-<ul>
+<ul class="list-group">
 {% for choice in poll.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+    <li class="list-group-item">{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
 {% endfor %}
 </ul>
 

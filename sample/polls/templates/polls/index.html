@@ -5,11 +5,12 @@
 
 {% block content %}
 
+<h1>Polls</h1>
+
 {% if latest_poll_list %}
-    <ul>
+    <ul class="list-group">
     {% for poll in latest_poll_list %}
-        <!-- <li><a href="/polls/{{ poll.id }}/">{{ poll.question }}</a></li> -->
-        <li><a href="{% url 'polls:detail' poll.id %}">{{ poll.question }}</a></li>
+        <li class="list-group-item"><a href="{% url 'polls:detail' poll.id %}">{{ poll.question }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
