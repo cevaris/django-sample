@@ -61,6 +61,7 @@ WSGI_APPLICATION = 'sample.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
+PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
 DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.postgresql_psycopg2',
@@ -90,3 +91,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+
+import sys
+#Covers regular testing and django-coverage
+if 'test' in sys.argv or 'test_coverage' in sys.argv: 
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+    DATABASES['default']['NAME']   = os.path.join(PROJECT_DIR, 'test.db')
