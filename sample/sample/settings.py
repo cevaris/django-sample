@@ -103,12 +103,17 @@ FIXTURE_DIRS = (
 
 
 # Celery
+from celery.utils.log import ensure_process_aware_logger
 import djcelery
 djcelery.setup_loader()
+ensure_process_aware_logger()
 BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 CELERY_ACCEPT_CONTENT  = ['json']
 CELERY_TASK_SERIALIZER = "json"
+CELERY_IMPORTS = ('polls.utils.tasks', ) 
+
+
 
 
 
