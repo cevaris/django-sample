@@ -1,3 +1,4 @@
+from django.core import serializers
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -8,8 +9,10 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 
 
+
 from polls.models import Choice
 from polls.models import Poll
+from polls.utils.tasks import process_vote
 
 
 class HomeView(generic.ListView):
@@ -41,6 +44,9 @@ def vote(request, poll_id):
     p = get_object_or_404(Poll, pk=poll_id)
     try:
         selected_choice = p.choice_set.get(pk=request.POST['choice'])
+
+        payload = serializers.serialize('json', [p,selected_choice])
+        process_vote.delay(payload)
     except (KeyError, Choice.DoesNotExist):
         # Redisplay the poll voting form.
         return render(request, 'polls/detail.html', {

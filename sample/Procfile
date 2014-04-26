@@ -1,1 +1,2 @@
 web: python manage.py runserver 3000
+celery: python manage.py celeryd

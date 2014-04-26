@@ -39,6 +39,7 @@ INSTALLED_APPS = (
 
     # Third party
     'south',
+    'djcelery',
 
     # Apps
     'polls',
@@ -100,8 +101,19 @@ FIXTURE_DIRS = (
    os.path.join(PROJECT_DIR, 'fixtures'),
 )
 
-import sys
+
+# Celery
+import djcelery
+djcelery.setup_loader()
+BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_ACCEPT_CONTENT  = ['json']
+CELERY_TASK_SERIALIZER = "json"
+
+
+
 #Covers regular testing and django-coverage
+import sys
 if 'test' in sys.argv or 'test_coverage' in sys.argv: 
     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
     DATABASES['default']['NAME']   = os.path.join(PROJECT_DIR, 'test.db')
