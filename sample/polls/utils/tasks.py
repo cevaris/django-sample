@@ -10,7 +10,7 @@ from celery import task
 def process_vote(payload):
     poll, choice = serializers.deserialize('json', payload)
     print "Starting Vote"
-    # time.sleep(5)
+    time.sleep(5)
     pprint("Voted '%s' for poll '%s'" % (choice.object, poll.object))
     print "Finished Vote"
     return None
