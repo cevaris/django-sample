@@ -1,3 +1,5 @@
+redis: redis-server
+cache: memcached -vvv
 web: python manage.py runserver 3000
 celery: python manage.py celeryd
-cache: memcached -vvv
+
