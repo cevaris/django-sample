@@ -61,18 +61,20 @@ WSGI_APPLICATION = 'sample.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
+import psycopg2.extensions
 PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
 DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.postgresql_psycopg2',
         'NAME': 'sampledb',
-        'USER': 'sampleuser',
-        'PASSWORD': 'sample',
-        'HOST': '127.0.0.1',
+        'USER': 'django',
+        'PASSWORD': 'djangopass',
+        'HOST': '192.168.6.105',
         'PORT': '5432',
-    }
+    },
+    
 }
+psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
